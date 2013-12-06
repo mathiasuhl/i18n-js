@@ -91,6 +91,23 @@ describe I18n::JS do
       result[:en][:admin][:edit][:title].should eql("Edit")
       result[:fr][:admin][:edit][:title].should eql("Editer")
     end
+
+    context "with available_locales set" do
+      before do
+        I18n.stub :available_locales => [:fr]
+      end
+
+      context 'when without config' do
+        let(:result){ I18n::JS.translation_segments.values.first }
+        it "limits the translations to the available locales" do
+          result[:en].should be_nil
+          result[:fr].should be_present
+        end
+      end
+
+      # Don't know how to test this yet
+      context 'when with config'
+    end
   end
 
   context "general" do

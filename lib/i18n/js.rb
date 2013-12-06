@@ -76,10 +76,14 @@ module I18n
     end
 
     def self.translation_segments
-      if config? && config[:translations]
+      segments = if config? && config[:translations]
         configured_segments
       else
         {"#{export_dir}/translations.js" => translations}
+      end
+      segments.inject({}) do |hash, (filename, translations)|
+        hash[filename] = translations.nil? ? nil : translations.select{|locale,_| I18n.available_locales.include?(locale) }
+        hash
       end
     end
 
