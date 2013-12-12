@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Nando Vieira", "PikachuEXE"]
   s.email       = ["fnando.vieira@gmail.com", "pikachuexe@gmail.com"]
-  s.homepage    = "http://github.com/PikachuEXE/i18n-js-pika"
+  s.homepage    = "http://github.com/PikachuEXE/i18n-js"
   s.summary     = "Forked version of original i18n-js. It's a small library to provide the Rails I18n translations on the Javascript."
   s.description = "Forked version of original i18n-js. It contains some pull requests that are not pulled yet on the original repo. Switch back to the original one when it's ready."
 
