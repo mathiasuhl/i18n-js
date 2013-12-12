@@ -4,7 +4,9 @@ module I18n
       MAJOR = 3
       MINOR = 0
       PATCH = 0
-      STRING = "#{MAJOR}.#{MINOR}.#{PATCH}.rc5"
+      # Set to nil for stable release
+      BUILD = 'rc6'.freeze
+      STRING = [MAJOR, MINOR, PATCH, BUILD].compact.join('.')
     end
   end
 end
