@@ -21,10 +21,9 @@ Features:
 #### Rails app
 
 Add the gem to your Gemfile.
-
-    source :rubygems
-    gem "rails", "3.2.3"
-    gem "i18n-js"
+```ruby
+gem "i18n-js-pika", require: "i18n-js"
+```
 
 If you're using the [asset pipeline](http://guides.rubyonrails.org/asset_pipeline.html),
 then you must add the following line to your `app/assets/javascripts/application.js`.
