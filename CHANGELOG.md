@@ -3,6 +3,11 @@ Changelog
 
 Major changes to I18n.js for each release. Please see the Git log for complete list of changes.
 
+3.0.0.rc7 (2013-12-23)
+-------------------
+
+* If loaded in browser (which is not in jasmine spec) and I18n object is defined and has some options set (e.g. locale, defaultLocale), they will be kept
+
 3.0.0.rc6 (2013-12-13)
 -------------------
 
