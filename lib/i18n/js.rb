@@ -109,7 +109,7 @@ module I18n
       File.open(file, "w+") do |f|
         f << %(I18n.translations || (I18n.translations = {});\n)
         translations.each do |locale, translations_for_locale|
-          f << %(I18n.translations["#{locale}"] = #{translations_for_locale.to_json};\n);
+          f << %(I18n.translations["#{locale}"] = #{JSON.generate(translations_for_locale, ascii_only: true)};\n);
         end
       end
     end
