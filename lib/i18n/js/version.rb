@@ -5,7 +5,7 @@ module I18n
       MINOR = 0
       PATCH = 0
       # Set to nil for stable release
-      BUILD = 'rc7'.freeze
+      BUILD = 'rc8'.freeze
       STRING = [MAJOR, MINOR, PATCH, BUILD].compact.join('.')
     end
   end

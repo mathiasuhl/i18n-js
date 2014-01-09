@@ -3,6 +3,11 @@ Changelog
 
 Major changes to I18n.js for each release. Please see the Git log for complete list of changes.
 
+3.0.0.rc8 (2014-01-09)
+-------------------
+
+* Fix local reload regression in development
+
 3.0.0.rc7 (2013-12-23)
 -------------------
 
