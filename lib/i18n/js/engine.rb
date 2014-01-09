@@ -5,14 +5,14 @@ module I18n
     class Engine < ::Rails::Engine
       initializer :after => "sprockets.environment" do
         ActiveSupport.on_load(:after_initialize, :yield => true) do
-          next unless JS.has_asset_pipeline?
+          next unless JS::Dependencies.using_asset_pipeline?
           next unless Rails.configuration.assets.compile
 
-          registry = Sprockets.respond_to?("register_preprocessor") ? Sprockets : Rails.application.assets
+          Rails.application.assets.register_preprocessor "application/javascript", :"i18n-js_dependencies" do |context, source|
+            if context.logical_path == "i18n/filtered"
+              ::I18n.load_path.each {|path| context.depend_on(File.expand_path(path))}
+            end
 
-          registry.register_preprocessor "application/javascript", :"i18n-js_dependencies" do |context, source|
-            next source unless context.logical_path == "i18n/filtered"
-            ::I18n.load_path.each {|path| context.depend_on(File.expand_path(path))}
             source
           end
         end
