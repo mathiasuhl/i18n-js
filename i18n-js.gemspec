@@ -19,7 +19,8 @@ Gem::Specification.new do |s|
 
   s.license       = 'MIT'
 
-  s.add_dependency "i18n"
+  s.add_dependency "i18n", "~> 0.6"
+  s.add_development_dependency "appraisal", '>= 0.5.2'
   s.add_development_dependency "activesupport"
   s.add_development_dependency "rspec"
   s.add_development_dependency "rake"

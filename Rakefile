@@ -1,3 +1,5 @@
+require "appraisal"
+require "rubygems"
 require "bundler"
 Bundler::GemHelper.install_tasks
 
@@ -12,6 +14,10 @@ end
 desc "Run all specs"
 task :spec => ["spec:ruby", "spec:js"]
 
-task :default do
-  Rake::Task[:spec].invoke
+if !ENV["APPRAISAL_INITIALIZED"] && !ENV["TRAVIS"]
+  task :default do
+    sh "rake appraisal:install && rake appraisal spec"
+  end
+else
+  task :default => :spec
 end
