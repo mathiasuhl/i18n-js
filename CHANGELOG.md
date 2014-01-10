@@ -3,6 +3,11 @@ Changelog
 
 Major changes to I18n.js for each release. Please see the Git log for complete list of changes.
 
+3.0.0.rc9 (2014-01-10)
+-------------------
+
+* Fix test cannot be run when we `register_preprocessor` in `test` env (Or when `Rails.application.assets` is `Sprockets::Index`)
+
 3.0.0.rc8 (2014-01-09)
 -------------------
 
