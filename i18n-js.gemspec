@@ -28,5 +28,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rake", ">= 0.9.2"
   s.add_development_dependency "pry-meta", "~> 0.0.6"
 
-  s.required_rubygems_version = '>= 1.4.0'
+  s.required_rubygems_version = ">= 1.4.0"
 end
