@@ -4,3 +4,4 @@ pkg
 spec/tmp
 .DS_Store
 Gemfile.lock
+gemfiles/*.gemfile.lock

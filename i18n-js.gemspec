@@ -17,12 +17,16 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.license       = 'MIT'
+  s.license       = "MIT"
 
   s.add_dependency "i18n", "~> 0.6"
-  s.add_development_dependency "appraisal", '>= 0.5.2'
-  s.add_development_dependency "activesupport"
-  s.add_development_dependency "rspec"
-  s.add_development_dependency "rake"
-  s.add_development_dependency "pry-meta"
+
+  s.add_development_dependency "bundler", ">= 1.0.0"
+  s.add_development_dependency "appraisal", ">= 0.5.2"
+  s.add_development_dependency "activesupport", ">= 3.0"
+  s.add_development_dependency "rspec", "~> 2.6"
+  s.add_development_dependency "rake", ">= 0.9.2"
+  s.add_development_dependency "pry-meta", "~> 0.0.6"
+
+  s.required_rubygems_version = '>= 1.4.0'
 end

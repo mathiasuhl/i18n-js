@@ -1,9 +1,9 @@
 require "appraisal"
-require "rubygems"
 require "bundler"
+require "rspec/core/rake_task"
+
 Bundler::GemHelper.install_tasks
 
-require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:"spec:ruby")
 
 desc "Run JavaScript specs"
