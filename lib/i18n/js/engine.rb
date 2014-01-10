@@ -8,12 +8,16 @@ module I18n
           next unless JS::Dependencies.using_asset_pipeline?
           next unless Rails.configuration.assets.compile
 
-          Rails.application.assets.register_preprocessor "application/javascript", :"i18n-js_dependencies" do |context, source|
-            if context.logical_path == "i18n/filtered"
-              ::I18n.load_path.each {|path| context.depend_on(File.expand_path(path))}
-            end
+          begin
+            Rails.application.assets.register_preprocessor "application/javascript", :"i18n-js_dependencies" do |context, source|
+              if context.logical_path == "i18n/filtered"
+                ::I18n.load_path.each {|path| context.depend_on(File.expand_path(path))}
+              end
 
-            source
+              source
+            end
+          rescue TypeError
+            # Could be raised by Sprockets::Index, which means we need to do nothing
           end
         end
       end
