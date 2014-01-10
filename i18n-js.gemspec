@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "i18n/js/version"
+require "i18n/js/pika/version"
 
 Gem::Specification.new do |s|
   s.name        = "i18n-js-pika"
-  s.version     = I18n::JS::Version::STRING
+  s.version     = I18n::JS::Version::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Nando Vieira", "PikachuEXE"]
   s.email       = ["fnando.vieira@gmail.com", "pikachuexe@gmail.com"]
