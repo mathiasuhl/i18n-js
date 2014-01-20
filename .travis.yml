@@ -4,7 +4,8 @@ rvm:
   - 2.0.0
   - 2.1.0
 before_install: # Need to install npm to test js
-- gem install bundler -v=1.5.1
+- gem install bundler -v=1.5.2
+- bundle --version
 - sudo apt-get update
 - sudo apt-get install npm
 - npm install jasmine-node
