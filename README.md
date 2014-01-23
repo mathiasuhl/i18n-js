@@ -14,6 +14,7 @@ Features:
 [![Build Status](https://travis-ci.org/PikachuEXE/i18n-js.png?branch=master)](https://travis-ci.org/PikachuEXE/i18n-js)
 [![Gem Version](https://badge.fury.io/rb/i18n-js-pika.png)](http://badge.fury.io/rb/i18n-js-pika)
 [![Dependency Status](https://gemnasium.com/PikachuEXE/i18n-js.png)](https://gemnasium.com/PikachuEXE/i18n-js)
+[![Code Climate](https://codeclimate.com/github/PikachuEXE/i18n-js.png)](https://codeclimate.com/github/PikachuEXE/i18n-js)
 
 ## Usage
 
