@@ -365,19 +365,14 @@
     }
 
     pluralizer = this.pluralization.get(options.locale);
-    keys = pluralizer(Math.abs(count));
-
-    while (keys.length) {
-      key = keys.shift();
-
-      if (this.isSet(translations[key])) {
-        message = translations[key];
-        break;
-      }
-    }
+    key = pluralizer(Math.abs(count));
 
     options.count = String(count);
-    return this.interpolate(message, options);
+
+    if (this.isSet(translations[key])) {
+      message = translations[key];
+      return this.interpolate(message, options);
+    }
   };
 
   // Return a missing translation message for the given parameters.
