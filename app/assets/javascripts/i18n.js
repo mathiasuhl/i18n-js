@@ -372,6 +372,8 @@
     if (this.isSet(translations[key])) {
       message = translations[key];
       return this.interpolate(message, options);
+    }else{
+      return "";
     }
   };
 
