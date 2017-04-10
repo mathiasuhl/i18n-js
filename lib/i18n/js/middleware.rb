@@ -12,8 +12,9 @@ module I18n
       end
 
       private
+
       def cache_path
-        @cache_path ||= Rails.root.join("tmp/cache/i18n-js.yml")
+        @cache_path ||= Rails.root.join('tmp/cache/i18n-js.yml')
       end
 
       def cache
@@ -48,7 +49,7 @@ module I18n
 
         return if valid_cache.all?
 
-        File.open(cache_path, "w+") do |file|
+        File.open(cache_path, 'w+') do |file|
           file << new_cache.to_yaml
         end
 

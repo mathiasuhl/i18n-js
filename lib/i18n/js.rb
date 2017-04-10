@@ -1,23 +1,23 @@
-require "i18n"
-require "FileUtils" unless defined?(FileUtils)
+require 'i18n'
+require 'FileUtils' unless defined?(FileUtils)
 
 module I18n
   module JS
-    require "i18n/js/dependencies"
+    require 'i18n/js/dependencies'
     if JS::Dependencies.rails?
-      require "i18n/js/middleware"
-      require "i18n/js/engine"
+      require 'i18n/js/middleware'
+      require 'i18n/js/engine'
     end
 
     # deep_merge by Stefan Rusterholz, see <http://www.ruby-forum.com/topic/142809>.
-    MERGER = proc do |key, v1, v2|
+    MERGER = proc do |_key, v1, v2|
       Hash === v1 && Hash === v2 ? v1.merge(v2, &MERGER) : v2
     end
 
     # The configuration file. This defaults to the `config/i18n-js.yml` file.
     #
     def self.config_file
-      @config_file ||= "config/i18n-js.yml"
+      @config_file ||= 'config/i18n-js.yml'
     end
 
     # Export translations to JavaScript, considering settings
@@ -33,13 +33,13 @@ module I18n
         result = scoped_translations("#{locale}.#{scope}")
         next if result.empty?
 
-        segment_name = ::I18n.interpolate(pattern,{:locale => locale})
+        segment_name = ::I18n.interpolate(pattern, locale: locale)
         segments[segment_name] = result
       end
     end
 
     def self.segment_for_scope(scope)
-      if scope == "*"
+      if scope == '*'
         translations
       else
         scoped_translations(scope)
@@ -48,7 +48,7 @@ module I18n
 
     def self.configured_segments
       config[:translations].each_with_object({}) do |options, segments|
-        options.reverse_merge!(:only => "*")
+        options.reverse_merge!(only: '*')
         if options[:file] =~ ::I18n::INTERPOLATION_PATTERN
           segments.merge!(segments_per_locale(options[:file], options[:only]))
         else
@@ -59,12 +59,12 @@ module I18n
     end
 
     def self.export_dir
-      "public/javascripts"
+      'public/javascripts'
     end
 
     def self.filtered_translations
       {}.tap do |result|
-        translation_segments.each do |filename, translations|
+        translation_segments.each do |_filename, translations|
           deep_merge!(result, translations)
         end
       end
@@ -72,13 +72,12 @@ module I18n
 
     def self.translation_segments
       segments = if config? && config[:translations]
-        configured_segments
-      else
-        {"#{export_dir}/translations.js" => translations}
+                   configured_segments
+                 else
+                   { "#{export_dir}/translations.js" => translations }
       end
-      segments.inject({}) do |hash, (filename, translations)|
-        hash[filename] = translations.nil? ? nil : translations.select{|locale,_| I18n.available_locales.include?(locale) }
-        hash
+      segments.each_with_object({}) do |(filename, translations), hash|
+        hash[filename] = translations.nil? ? nil : translations.select { |locale, _| I18n.available_locales.include?(locale) }
       end
     end
 
@@ -101,10 +100,10 @@ module I18n
     def self.save(translations, file)
       FileUtils.mkdir_p File.dirname(file)
 
-      File.open(file, "w+") do |f|
+      File.open(file, 'w+') do |f|
         f << %(I18n.translations || (I18n.translations = {});\n)
         translations.each do |locale, translations_for_locale|
-          f << %(I18n.translations["#{locale}"] = #{translations_for_locale.to_json};\n);
+          f << %(I18n.translations["#{locale}"] = #{translations_for_locale.to_json};\n)
         end
       end
     end
@@ -121,19 +120,19 @@ module I18n
 
     # Filter translations according to the specified scope.
     def self.filter(translations, scopes)
-      scopes = scopes.split(".") if scopes.is_a?(String)
+      scopes = scopes.split('.') if scopes.is_a?(String)
       scopes = scopes.clone
       scope = scopes.shift
 
-      if scope == "*"
+      if scope == '*'
         results = {}
         translations.each do |scope, translations|
           tmp = scopes.empty? ? translations : filter(translations, scopes)
           results[scope.to_sym] = tmp unless tmp.nil?
         end
         return results
-      elsif translations.has_key?(scope.to_sym)
-        return {scope.to_sym => scopes.empty? ? translations[scope.to_sym] : filter(translations[scope.to_sym], scopes)}
+      elsif translations.key?(scope.to_sym)
+        return { scope.to_sym => scopes.empty? ? translations[scope.to_sym] : filter(translations[scope.to_sym], scopes) }
       end
       nil
     end

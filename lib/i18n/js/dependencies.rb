@@ -3,11 +3,11 @@ module I18n
     module Dependencies
       class << self
         def rails3?
-          safe_gem_check("rails", "~> 3") && running_rails3?
+          safe_gem_check('rails', '~> 3') && running_rails3?
         end
 
         def rails4?
-          safe_gem_check("rails", "~> 4.0") && running_rails4?
+          safe_gem_check('rails', '~> 4.0') && running_rails4?
         end
 
         def rails?
@@ -15,7 +15,7 @@ module I18n
         end
 
         def rails_available?
-          safe_gem_check("rails", '>= 3')
+          safe_gem_check('rails', '>= 3')
         end
 
         def using_asset_pipeline?
@@ -48,7 +48,6 @@ module I18n
         rescue Gem::LoadError
           false
         end
-
       end
     end
   end
